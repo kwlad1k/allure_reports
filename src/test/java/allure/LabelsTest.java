@@ -7,15 +7,11 @@ import org.junit.jupiter.api.Test;
 public class LabelsTest {
     @Test
     @Feature("Issue в репозитории")
-    @Story("Сознадние Issue")
+    @Story("Создание Issue")
     @Owner("Kwlad1ck")
     @Severity(SeverityLevel.BLOCKER)
     @Link(value = "GitHub", url = "https://github.com/kwlad1k")
-    @DisplayName("Создание Issue для авторизованного пользователя")
+    @DisplayName("Статические лейбы")
     public void testStaticLabels() {
-    }
-
-    @Test
-    public void testDynamicLabels() {
     }
 }

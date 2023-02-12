@@ -1,11 +1,11 @@
 package allure;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -15,6 +15,10 @@ import static org.openqa.selenium.By.linkText;
 
 public class SelenideTest {
 
+    @Feature("Issue в репозиторий")
+    @Story("Проверка Issue")
+    @Owner("Kwlad1ck")
+    @DisplayName("Тест написаный обычным селенидом")
     @Test
     public void testIssueSearch() {
         SelenideLogger.addListener("allure", new AllureSelenide());

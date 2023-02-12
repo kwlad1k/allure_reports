@@ -2,7 +2,11 @@ package allure;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.withText;
@@ -18,18 +22,39 @@ public class StepTest {
     private static final int ISSUE = 81;
 
     @Test
+    @Owner("Kwlad1ck")
+    @DisplayName("Лямда шаги через Step")
     public void testLamdaStep() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
             open("https://github.com");
-            attachment("Source", webdriver().driver().source());
+        });
+        step("Ищем репозиторий" + REPOSITORY, () -> {
+            $(".header-search-input").click();
+            $(".header-search-input").setValue(REPOSITORY);
+            $(".header-search-input").submit();
+        });
+        step("Кликаем по ссылке репозитория" + REPOSITORY, () -> {
+            $(linkText(REPOSITORY)).click();
+        });
+        step("Открываем таб Issues", () -> {
+            $("#issues-tab").click();
+        });
+        step("Проверяем наличие Issue с номером" + ISSUE, () -> {
+            $(withText("#" + ISSUE)).should(Condition.exist);
         });
     }
 
     @Test
+    @Owner("Kwlad1ck")
+    @DisplayName("Шаги с аннотацией @Step")
     public void testAnnotatedStep() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
         steps.openMainPage();
+        steps.searchForRepository(REPOSITORY);
+        steps.clickOnRepositoryLink(REPOSITORY);
+        steps.openIssuesTab();
+        steps.shouldSeeIssueWithNumber(ISSUE);
     }
 }
