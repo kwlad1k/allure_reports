@@ -18,7 +18,7 @@ public class StepTest {
     private static final int ISSUE = 81;
 
     @Test
-    public void testLamdaStep  () {
+    public void testLamdaStep() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
             open("https://github.com");
@@ -27,11 +27,9 @@ public class StepTest {
     }
 
     @Test
-    public void testAnnotatedStep () {
+    public void testAnnotatedStep() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
         steps.openMainPage();
-
-
     }
 }

@@ -9,7 +9,7 @@ public class LabelsTest {
     @Feature("Issue в репозитории")
     @Story("Сознадние Issue")
     @Owner("Kwlad1ck")
-    @Severity(SeverityLevel.BLOCKER )
+    @Severity(SeverityLevel.BLOCKER)
     @Link(value = "GitHub", url = "https://github.com/kwlad1k")
     @DisplayName("Создание Issue для авторизованного пользователя")
     public void testStaticLabels() {
